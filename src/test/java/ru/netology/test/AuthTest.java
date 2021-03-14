@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.data.Registration;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
@@ -24,7 +26,7 @@ public class AuthTest {
         $("[data-test-id=login] input").setValue(validActiveUser.getLogin());
         $("[data-test-id=password] input").setValue(validActiveUser.getPassword());
         $(byText("Продолжить")).click();
-        $(withText("Личный кабинет")).waitUntil(Condition.visible, 15000);
+        $(withText("Личный кабинет")).shouldBe(Condition.visible, Duration.ofMillis(15000));
     }
 
     @Test
@@ -33,7 +35,7 @@ public class AuthTest {
         $("[data-test-id=login] input").setValue(validActiveUser.getLogin());
         $("[data-test-id=password] input").setValue(validActiveUser.getPassword());
         $(byText("Продолжить")).click();
-        $(withText("Пользователь заблокирован")).waitUntil(Condition.visible, 15000);
+        $(withText("Пользователь заблокирован")).shouldBe(Condition.visible, Duration.ofMillis(15000));
     }
 
     @Test
@@ -42,7 +44,7 @@ public class AuthTest {
         $("[data-test-id=login] input").setValue(user.getLogin());
         $("[data-test-id=password] input").setValue(user.getPassword());
         $(byText("Продолжить")).click();
-        $(withText("Неверно указан логин или пароль")).waitUntil(Condition.visible,15000);
+        $(withText("Неверно указан логин или пароль")).shouldBe(Condition.visible, Duration.ofMillis(15000));
     }
 
     @Test
@@ -51,6 +53,6 @@ public class AuthTest {
         $("[data-test-id=login] input").setValue(user.getLogin());
         $("[data-test-id=password] input").setValue(user.getPassword());
         $(byText("Продолжить")).click();
-        $(withText("Неверно указан логин или пароль")).waitUntil(Condition.visible,15000);
+        $(withText("Неверно указан логин или пароль")).shouldBe(Condition.visible, Duration.ofMillis(15000));
     }
 }
